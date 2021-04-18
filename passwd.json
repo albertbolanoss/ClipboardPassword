@@ -1,0 +1,10 @@
+config = {
+	"data": [
+		{
+			"url": "The web page address",
+			"username": "username",
+			"password": "password",
+			"title": "The title for this record"
+		}
+	]
+}

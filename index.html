@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Safe Access</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script type="text/javascript" src="passwd.json"></script>
+<style>
+	#content {
+		display: flex;
+		flex-flow: column wrap;
+	}
+
+	#content.item {
+		display: block;
+	}
+
+	#content label {
+		display: inline-block;
+		width: 75px;
+	}
+
+	#content input {
+		display: inline-block;
+		border-style: none;
+		border-width: 0px;
+		cursor: pointer;
+	}
+
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<div ng-app="safeAccessApp" ng-controller="viewPasswordsCtrl">
+		<h2>Clipboard Credentials</h2>
+		<p>Clip on the Credential field to copy into the clip board or to go the web page.</p>
+		<div>
+			<label>Search: <input ng-model="searchText" /></label>
+		</div>
+		<br />
+		<div id="content">
+			<div ng-repeat="x in data | filter:searchText">
+				<div class="item">
+					<label for="url"  class="fieldGroup">Web Page:</label>
+			<a href="{{x.url}}" target="_blank">{{x.title}}</a>
+				</div>
+			
+				<div class="item">
+					<label for="username">Username:</label>
+					<input type="text" name="username" ng-model="data[$index].username" onclick="copyToClipboard(this.value)" ng-readonly="true" />
+				</div>
+
+				<div class="item">
+					<label for="password">Password:</label>
+					<input type="password" name="password" ng-model="data[$index].password" onclick="copyToClipboard(this.value)" ng-readonly="true" />
+				</div>
+			</div>
+			<br />
+		</div>
+			
+		<script>
+				var app = angular.module('safeAccessApp', []);
+				
+				app.controller('viewPasswordsCtrl', function($scope) {
+					$scope.data = config.data;
+				});
+				
+				function copyToClipboard(value) {
+					navigator.clipboard.writeText(value);
+				}
+
+		</script> 
+</body>
+</html>
