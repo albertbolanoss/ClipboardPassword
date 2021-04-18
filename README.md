@@ -1,4 +1,4 @@
-# Safe Access
+# Clipboard Password
 
 Allow to store the web page credentials in a JSON file and then copy the credentials into the clip board or go to the web page.
 
