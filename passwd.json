@@ -2,8 +2,8 @@ config = {
 	"data": [
 		{
 			"url": "The web page address",
-			"username": "username",
-			"password": "password",
+			"username": "Username",
+			"password": "RSA encryted password",
 			"title": "The title for this record"
 		}
 	]

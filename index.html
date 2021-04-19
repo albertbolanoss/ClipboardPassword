@@ -3,7 +3,10 @@
 <head>
 <title>Safe Access</title>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script type="text/javascript" src="script/privateKey.js"></script>
+<script type="text/javascript" src="script/publicKey.js"></script>
 <script type="text/javascript" src="passwd.json"></script>
+<script src="script/jsencrypt.min.js"></script>
 <style>
 	#content {
 		display: flex;
@@ -31,6 +34,9 @@
 </head>
 <body>
 	<div ng-app="safeAccessApp" ng-controller="viewPasswordsCtrl">
+		<input type="password" id="textToEncrypt">
+		<button onclick="encryptAndCopyToClipboard()"> Encrypt</button>
+
 		<h2>Clipboard Credentials</h2>
 		<p>Clip on the Credential field to copy into the clip board or to go the web page.</p>
 		<div>
@@ -58,16 +64,37 @@
 		</div>
 			
 		<script>
-				var app = angular.module('safeAccessApp', []);
-				
-				app.controller('viewPasswordsCtrl', function($scope) {
-					$scope.data = config.data;
-				});
-				
-				function copyToClipboard(value) {
-					navigator.clipboard.writeText(value);
-				}
+				encrypt = function (textToEncrypt) {
+						const encrypt = new JSEncrypt();
+						encrypt.setPublicKey(publicKey);
 
+						return encrypt.encrypt(textToEncrypt);
+					};
+
+				decrypt = function (textToDecrypt) {
+					const decrypt = new JSEncrypt();
+					decrypt.setPrivateKey(privateKey);
+					
+					return decrypt.decrypt(textToDecrypt);
+				};
+
+				var app = angular.module('safeAccessApp', []);
+				app.controller('viewPasswordsCtrl', function($scope) {
+					$scope.data = config.data.map(element => 
+						Object.assign({}, element, { password:  decrypt(element.password)}));
+
+					copyToClipboard = function(value) {
+						navigator.clipboard.writeText(value);
+					};
+
+					encryptAndCopyToClipboard = function() {
+						const input = document.getElementById("textToEncrypt");
+						const textToEncrypt = input.value;
+						input.value = "";
+						
+						copyToClipboard(encrypt(textToEncrypt));
+					};
+				});
 		</script> 
 </body>
 </html>
