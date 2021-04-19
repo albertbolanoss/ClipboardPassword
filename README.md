@@ -1,8 +1,8 @@
 # Clipboar Password
 
-Allow to store the web page credentials in a JSON file and then copy the credentials into the clip board or go to the web page.
+Allow to store the web page credentials in a JSON file and then copy them to the clipboard or go to the web page.
 
-Note: this one is a incomplete project yet the idea is in progress (missing the password encriptation and the lookup feel).
+Note: this one is an incomplete project yet the idea is in progress, key encryption is missing and we need to finish building the frontend and include it as a browser pluggin.
 
 ## How to Create a Public / Private Key Pair
 
