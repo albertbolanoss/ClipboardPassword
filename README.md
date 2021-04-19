@@ -6,7 +6,15 @@ Note: this one is an incomplete project yet the idea is in progress, key encrypt
 
 ## How to Create a Public / Private Key Pair
 
-See the following [link](https://docs.oracle.com/cd/E19683-01/816-4883/6mb2joaoa/index.html) to Create a Public / Private Key Pair
+```sh
+openssl genrsa -out clipboardPassword.pem 2048
+```
+
+```
+openssl rsa -pubout -in clipboardPassword.pem -out clipboardPassword_pub.pem
+```
+
+See the following [link](https://github.com/travist/jsencrypt) to more information.
 
 ## Initial configuration (only the first time).
 
