@@ -8,7 +8,7 @@ Note: this one is an incomplete project yet the idea is in progress, key encrypt
 
 1. Create a Json file in this root folder and named it "passwd.json" and add records to this one.
 1. Open "index.html"
-1. That's it, use the free tool
+1. That's it, use this free tool
 
 ```json
 config = {
