@@ -34,25 +34,26 @@ config = {
 		}
 	]
 }
+```
 
 privateKey.js
-```
+```js
 const privateKey = 
------BEGIN PRIVATE KEY-----
+`-----BEGIN PRIVATE KEY-----
 .
 .
 .
------END PRIVATE KEY-----;
+-----END PRIVATE KEY-----`;
 ```
 
 publicKey.js
-```
+```js
 const publicKey = 
------BEGIN PUBLIC KEY-----
+`-----BEGIN PUBLIC KEY-----
 .
 .
 .
------END PUBLIC KEY-----;
+-----END PUBLIC KEY-----`;
 ```
 
 ## How run it
