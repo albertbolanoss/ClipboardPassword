@@ -3,8 +3,6 @@
 <head>
 <title>Safe Access</title>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<script type="text/javascript" src="script/privateKey.js"></script>
-<script type="text/javascript" src="script/publicKey.js"></script>
 <script type="text/javascript" src="passwd.json"></script>
 <script src="script/jsencrypt.min.js"></script>
 <style>
@@ -81,7 +79,14 @@
 
 				var app = angular.module('safeAccessApp', []);
 				app.controller('viewPasswordsCtrl', function($scope) {
-					$scope.data = config.data;
+					const password = prompt("Please enter your password:", "");
+					if (password && password === decrypt(config.data[0].password)) {
+						$scope.data = config.data;
+					} else {
+						$scope.data = config.data.map(element => 
+							Object.assign({}, element, { password:  ''}));
+					}
+					
 					copyToClipboard = function(value) {
 						navigator.clipboard.writeText(decrypt(value));
 					};
