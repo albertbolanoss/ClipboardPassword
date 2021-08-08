@@ -34,8 +34,9 @@
 </head>
 <body>
 	<div ng-app="safeAccessApp" ng-controller="viewPasswordsCtrl">
-		<input type="password" id="textToEncrypt">
-		<button onclick="encryptAndCopyToClipboard()"> Encrypt</button>
+		<input type="password" id="textToEncrypt" />
+		<button onclick="encryptText()"> Encrypt</button> 
+		<input type="text" id="encryptResult" />
 
 		<h2>Clipboard Credentials</h2>
 		<p>Clip on the Credential field to copy into the clip board or to go the web page.</p>
@@ -59,8 +60,8 @@
 					<label for="password">Password:</label>
 					<input type="password" name="password" ng-model="data[$index].password" onclick="copyToClipboard(this.value)" ng-readonly="true" />
 				</div>
+				<br /><br />
 			</div>
-			<br />
 		</div>
 			
 		<script>
@@ -80,19 +81,19 @@
 
 				var app = angular.module('safeAccessApp', []);
 				app.controller('viewPasswordsCtrl', function($scope) {
-					$scope.data = config.data.map(element => 
-						Object.assign({}, element, { password:  decrypt(element.password)}));
-
+					$scope.data = config.data;
 					copyToClipboard = function(value) {
-						navigator.clipboard.writeText(value);
+						navigator.clipboard.writeText(decrypt(value));
 					};
 
-					encryptAndCopyToClipboard = function() {
+					encryptText = function() {
 						const input = document.getElementById("textToEncrypt");
 						const textToEncrypt = input.value;
-						input.value = "";
 						
-						copyToClipboard(encrypt(textToEncrypt));
+						const encryptResult = document.getElementById("encryptResult");
+						encryptResult.value = encrypt(textToEncrypt);
+						encryptResult.select();
+						input.value = "";
 					};
 				});
 		</script> 
