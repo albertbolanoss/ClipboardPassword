@@ -15,15 +15,16 @@ decrypt = function (textToDecrypt) {
 
 var app = angular.module('safeAccessApp', []);
 app.controller('viewPasswordsCtrl', function($scope) {
-	const password = prompt("Password: ");
+	$scope.data = [];
 	
-	if (password && password === decrypt(config.data[0].password)) {
-		$scope.data = config.data;
-	} else {
-		$scope.data = config.data.map(element => 
-			Object.assign({}, element, { password:  ''}));
+	if (config.data && config.data.length > 0) {
+		const password = prompt("Input your password");
+		const appPassword = decrypt(config.data[0].password);
+		if (password && password === appPassword) {
+			$scope.data = config.data;
+		}
 	}
-
+	
 	copyToClipboard = function(value) {
 		navigator.clipboard.writeText(decrypt(value));
 	};

@@ -18,9 +18,10 @@ See the following [link](https://github.com/travist/jsencrypt) to more informati
 
 ## Initial configuration (only the first time).
 
-1. Open the JSON file "passwd.json" located in the /script folder and add your records to this.
 1. Open the JS file "privateKey.js" and set your private key.
 1. Edit the JS file "publicKey.js" and set your public key.
+1. Open "index.html"
+1. Encript the first password and set up in the first record of passwd.json file locate in /script folder
 
 passwd.json
 ```json
@@ -28,15 +29,16 @@ config = {
 	"data": [
 		{
 			"url": "The web page address",
-			"username": "Username",
+			"username": "The Username",
 			"password": "RSA encryted password",
 			"title": "The title for this record"
+		},
+		{
+		  .....
 		}
 	]
 }
 ```
-
-Note:  The first record must be the clipboard password (this one will be request when it starts up the application, you can use this link to  get the encryted password: [link]http://travistidwell.com/jsencrypt/demo/)
 
 privateKey.js
 ```js
@@ -58,7 +60,10 @@ const publicKey =
 -----END PUBLIC KEY-----`;
 ```
 
-## How run it
+## How use it
+
 1. Open "index.html"
+1. Add new records to /script/passwd.json
+1. Access to the urls and copy the password by clicking on them
 
 

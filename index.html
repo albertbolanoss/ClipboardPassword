@@ -34,8 +34,10 @@
 </head>
 <body>
 	<div ng-app="safeAccessApp" ng-controller="viewPasswordsCtrl">
+		<span>Text to encrypt: </span>
 		<input type="password" id="textToEncrypt" />
-		<button onclick="encryptText()"> Encrypt</button> 
+		<button onclick="encryptText()"> Encrypt</button>
+		<span>Result: </span>
 		<input type="text" id="encryptResult" />
 
 		<h2>Clipboard Credentials</h2>
