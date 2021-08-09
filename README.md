@@ -15,11 +15,10 @@ openssl rsa -pubout -in clipboardPassword.pem -out clipboardPassword_pub.pem
 ```
 
 See the following [link](https://github.com/travist/jsencrypt) to more information.
-See the following [link]http://travistidwell.com/jsencrypt/demo/ to encryption the first record
 
 ## Initial configuration (only the first time).
 
-1. Open the JSON file "passwd.json" located in the root folder and add your records to this. The first record must be the clipboard password (this one will be request when it starts up the application)
+1. Open the JSON file "passwd.json" located in the /script folder and add your records to this.
 1. Open the JS file "privateKey.js" and set your private key.
 1. Edit the JS file "publicKey.js" and set your public key.
 
@@ -36,6 +35,8 @@ config = {
 	]
 }
 ```
+
+Note:  The first record must be the clipboard password (this one will be request when it starts up the application, you can use this link to  get the encryted password: [link]http://travistidwell.com/jsencrypt/demo/)
 
 privateKey.js
 ```js
